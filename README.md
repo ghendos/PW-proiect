@@ -4,3 +4,5 @@ Proiect pentru laborator PW.
 Cum rulezi:
 1. pip install flask
 2. python app.py
+
+http://127.0.0.1:5000/
