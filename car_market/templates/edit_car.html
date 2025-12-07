@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Editează mașina</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <header>
+        <h1>Editează mașina</h1>
+    </header>
+
+    <main>
+        <div class="form-container">
+            <h2>Modificare anunț</h2>
+
+            <form method="POST" enctype="multipart/form-data" class="add-form">
+
+                <!-- Marcă (din DB + marcă nouă) -->
+                <label for="brand">Marcă</label>
+                <select id="brand" name="brand" required>
+                    <option value="" disabled>Alege marca</option>
+                    {% for b in brands %}
+                    <option value="{{ b }}" {% if b==car[1] %}selected{% endif %}>{{ b }}</option>
+                    {% endfor %}
+                    <option value="_other">Altă marcă...</option>
+                </select>
+
+                <label for="brand_new">Marcă nouă (opțional)</label>
+                <input type="text" id="brand_new" name="brand_new"
+                    placeholder="Scrie o marcă nouă doar dacă nu există în listă">
+
+                <!-- Model -->
+                <label for="model">Model</label>
+                <input type="text" id="model" name="model" value="{{ car[2] }}" required>
+
+                <!-- An fabricație -->
+                <label for="year">An fabricație</label>
+                <input type="number" id="year" name="year" value="{{ car[3] }}" required>
+
+                <!-- Preț -->
+                <label for="price">Preț (€)</label>
+                <input type="number" id="price" name="price" step="0.01" value="{{ car[4] }}" required>
+
+                <!-- Telefon -->
+                <label for="phone">Număr de telefon</label>
+                <input type="text" id="phone" name="phone" value="{{ car[8] }}" required>
+
+                <!-- Descriere -->
+                <label for="description">Descriere</label>
+                <textarea id="description" name="description" rows="4">{{ car[5] }}</textarea>
+
+                <!-- Imagine nouă -->
+                <label for="image">Imagine nouă (opțional)</label>
+                <input type="file" id="image" name="image" accept="image/*">
+
+                {% if car[6] %}
+                <p style="margin-top:10px; color:#9ca3af;">Poză actuală:</p>
+                <img src="{{ url_for('uploaded_file', filename=car[6].split('/')[-1]) }}" alt="Poză mașină"
+                    style="max-width:200px; border-radius:8px; margin-bottom:15px;">
+                {% endif %}
+
+                <div class="form-actions">
+                    <button type="submit" class="btn primary">Salvează modificările</button>
+                    <a href="{{ url_for('index') }}" class="btn secondary">Înapoi</a>
+                </div>
+
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 Car Market • Proiect Flask by Ghenadie</p>
+    </footer>
+
+</body>
+
+</html>

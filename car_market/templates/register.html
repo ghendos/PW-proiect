@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Înregistrare</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header>
+    <h1>Înregistrare</h1>
+</header>
+
+<main>
+    <div class="auth-container">
+        <h2>Creează un cont nou</h2>
+
+        <form method="POST">
+            <input type="text" name="username" placeholder="Alege un nume de utilizator" required>
+            <input type="password" name="password" placeholder="Alege o parolă" required>
+            <button type="submit" class="btn primary full-width">Creează cont</button>
+        </form>
+
+        <div class="alt-link">
+            Ai deja un cont? <a href="{{ url_for('login') }}">Autentifică-te</a>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <p>© 2025 Car Market • Proiect Flask by Ghenadie</p>
+</footer>
+
+</body>
+</html>

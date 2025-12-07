@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Car Market RO</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header>
+    <h1>CAR MARKET RO</h1>
+    <nav>
+        {% if session.username %}
+            <span>Bun venit, <b>{{ session.username }}</b>!</span>
+            <a href="{{ url_for('logout') }}" class="btn small">Delogare</a>
+        {% else %}
+            <a href="{{ url_for('login') }}" class="btn small">Login</a>
+            <a href="{{ url_for('register') }}" class="btn small">Register</a>
+        {% endif %}
+    </nav>
+</header>
+
+<main>
+    <!-- Bara de căutare -->
+    <form method="POST" class="search-bar">
+        <input name="search" placeholder="Caută marcă sau model..." value="{{ search or '' }}">
+        <button type="submit" class="btn primary">Caută</button>
+        <a href="/" class="btn secondary">Resetează</a>
+    </form>
+
+    <!-- Buton adăugare mașină -->
+    {% if session.username %}
+        <a href="{{ url_for('add_car') }}" class="btn add-btn">+ Adaugă mașină</a>
+    {% endif %}
+
+    <!-- Listă mașini -->
+    {% if cars %}
+        <div class="car-grid">
+            {% for c in cars %}
+                <div class="car-card">
+                    {% if c[6] %}
+                        <img src="{{ url_for('uploaded_file', filename=c[6].split('/')[-1]) }}"
+                             alt="Poza mașinii"
+                             class="car-img">
+                    {% else %}
+                        <div class="placeholder">Fără imagine</div>
+                    {% endif %}
+
+                    <h3>{{ c[1] }} {{ c[2] }}</h3>
+                    <p><b>An:</b> {{ c[3] }}</p>
+                    <p><b>Preț:</b> {{ "%.2f"|format(c[4]) }} €</p>
+
+                    {% if c[8] %}
+                        <p><b>Telefon:</b> {{ c[8] }}</p>
+                    {% endif %}
+
+                    {% if c[5] %}
+                        <p>{{ c[5] }}</p>
+                    {% endif %}
+
+                    {% if c[7] %}
+                        <p class="author">👤 Postat de: {{ c[7] }}</p>
+                    {% endif %}
+
+                    {% if session.user_id == c[9] %}
+                        <div class="actions">
+    <a href="{{ url_for('edit_car', id=c[0]) }}" class="btn edit">Editează</a>
+    <form method="POST" action="{{ url_for('delete_car', id=c[0]) }}" onsubmit="return confirm('Ștergi anunțul?');">
+        <button type="submit" class="btn danger">Șterge</button>
+    </form>
+</div>
+
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="empty">Nu există anunțuri încă.</p>
+    {% endif %}
+</main>
+
+<footer>
+    <p>© 2025 Car Market • Proiect Flask by Ghenadie</p>
+</footer>
+
+</body>
+</html>

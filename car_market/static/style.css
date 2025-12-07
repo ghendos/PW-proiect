@@ -1,0 +1,256 @@
+/* ================= GENERAL ================= */
+body {
+    font-family: "Segoe UI", sans-serif;
+    margin: 0;
+    color: #e0e0e0;
+    background: radial-gradient(circle at 20% 20%, #101828, #0a0f1a 80%);
+    background-attachment: fixed;
+    overflow-x: hidden;
+}
+
+/* ⭐ Stele animate */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    background: transparent url("https://www.transparenttextures.com/patterns/stardust.png") repeat;
+    opacity: 0.3;
+    animation: starsMove 120s linear infinite;
+    z-index: -1;
+}
+
+@keyframes starsMove {
+    from {
+        transform: translate(0, 0);
+    }
+
+    to {
+        transform: translate(-500px, -500px);
+    }
+}
+
+/* ================= HEADER ================= */
+header {
+    background: rgba(30, 41, 59, 0.85);
+    backdrop-filter: blur(8px);
+    color: #fff;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #93c5fd;
+}
+
+nav a,
+nav span {
+    color: #e2e8f0;
+    margin-left: 15px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* ================= BUTOANE ================= */
+.btn {
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: .2s;
+    text-decoration: none;
+}
+
+/* Căutare */
+.btn.primary {
+    background: #1e293b;
+    color: #f1f5f9;
+    border: 1px solid #334155;
+}
+
+.btn.primary:hover {
+    background: #0f172a;
+    border-color: #475569;
+}
+
+/* Reset */
+.btn.secondary {
+    background: #94a3b8;
+    color: black;
+}
+
+.btn.secondary:hover {
+    background: #64748b;
+    color: white;
+}
+
+/* Adaugă */
+.btn.add-btn {
+    margin: 1rem 2rem;
+    color: #60a5fa;
+    font-weight: bold;
+}
+
+/* Editează (mov) */
+.btn.edit {
+    background: #6366f1;
+    color: white;
+}
+
+.btn.edit:hover {
+    background: #4f46e5;
+}
+
+/* Șterge (roșu) */
+.btn.danger {
+    background: #dc2626;
+    color: white;
+}
+
+.btn.danger:hover {
+    background: #b91c1c;
+}
+
+/* ================= CĂUTARE ================= */
+.search-bar {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin: 20px auto;
+}
+
+.search-bar input {
+    width: 300px;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #64748b;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.search-bar input::placeholder {
+    color: #a1a1aa;
+}
+
+/* ================= GRID MAȘINI ================= */
+.car-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: flex-start;
+    padding: 2rem 3rem;
+}
+
+/* ================= CARD ================= */
+.car-card {
+    background: rgba(255, 255, 255, 0.07);
+    border-radius: 14px;
+    padding: 15px;
+    width: 350px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(4px);
+    transition: .3s;
+}
+
+.car-card:hover {
+    transform: translateY(-4px);
+    border-color: #60a5fa;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.6);
+}
+
+.car-card img {
+    width: 100%;
+    max-height: 260px;
+    object-fit: contain;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+/* ================= ACTIONS (REPARAT!) ================= */
+.actions {
+    display: flex;
+    justify-content: space-between !important;
+    /* Editează stânga — Șterge dreapta */
+    align-items: center;
+    margin-top: 15px;
+    width: 100%;
+}
+
+/* ================= FORMULARE ================= */
+.form-container {
+    background: rgba(255, 255, 255, 0.07);
+    max-width: 430px;
+    margin: 60px auto;
+    padding: 30px;
+    border-radius: 12px;
+    color: #f1f5f9;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+}
+
+.form-container label {
+    display: block;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+.form-container input,
+.form-container textarea,
+.form-container select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    border: 1px solid #64748b;
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    font-size: 1rem;
+}
+
+.form-container input:focus,
+.form-container textarea:focus,
+.form-container select:focus {
+    border-color: #60a5fa;
+    box-shadow: 0 0 6px rgba(96, 165, 250, 0.5);
+    outline: none;
+}
+
+/* ================= DROPDOWN SPECIAL ================= */
+select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='20' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    background-color: rgba(255, 255, 255, 0.12);
+}
+
+select option {
+    background: #1e293b;
+    color: white;
+}
+
+/* ================= FOOTER ================= */
+footer {
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+    background: rgba(15, 23, 42, 0.85);
+    color: #cbd5e1;
+}

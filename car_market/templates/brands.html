@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Gestionare mărci</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <header>
+        <h1>Gestionare mărci</h1>
+    </header>
+
+    <main class="form-container">
+
+        <h2>Adaugă marcă</h2>
+        <form method="POST" action="{{ url_for('brand_add') }}">
+            <input type="text" name="brand" placeholder="Ex: Ferrari" required>
+            <button class="btn primary">Adaugă</button>
+        </form>
+
+        <h2 style="margin-top:30px;">Mărci existente</h2>
+
+        <ul>
+            {% for b in brands %}
+            <li style="margin-bottom:8px;">
+                {{ b[1] }}
+                <form action="{{ url_for('brand_delete', id=b[0]) }}" method="POST" style="display:inline;">
+                    <button class="btn danger small">Șterge</button>
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <a href="{{ url_for('index') }}" class="btn secondary" style="margin-top:20px;">Înapoi</a>
+    </main>
+
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Autentificare • Car Market</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="auth-container">
+    <h2>Autentificare</h2>
+
+    <form method="POST">
+        <label>Utilizator</label>
+        <input type="text" name="username" placeholder="Introdu numele tău de utilizator" required>
+
+        <label>Parolă</label>
+        <input type="password" name="password" placeholder="Introdu parola" required>
+
+        <button type="submit" class="btn primary full-width">Conectează-te</button>
+    </form>
+
+    <p class="alt-link">
+        Nu ai cont? <a href="{{ url_for('register') }}">Creează unul</a>
+    </p>
+</div>
+
+</body>
+</html>

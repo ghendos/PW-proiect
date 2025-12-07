@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Adaugă mașină</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <header>
+        <h1>Adaugă mașină</h1>
+    </header>
+
+    <main>
+        <div class="form-container">
+            <h2>Adaugă o mașină</h2>
+
+            <form method="POST" enctype="multipart/form-data" class="add-form">
+
+                <!-- Marcă (din DB + marcă nouă) -->
+                <label for="brand">Marcă</label>
+                <select id="brand" name="brand" required>
+                    <option value="" disabled selected>Alege marca</option>
+                    {% for b in brands %}
+                    <option value="{{ b }}">{{ b }}</option>
+                    {% endfor %}
+                    <option value="_other">Altă marcă...</option>
+                </select>
+
+                <label for="brand_new">Marcă nouă (opțional)</label>
+                <input type="text" id="brand_new" name="brand_new"
+                    placeholder="Dacă nu găsești marca în listă, scrie-o aici">
+
+                <!-- Model -->
+                <label for="model">Model</label>
+                <input type="text" id="model" name="model" placeholder="Ex: RS6" required>
+
+                <!-- An fabricație -->
+                <label for="year">An fabricație</label>
+                <input type="number" id="year" name="year" placeholder="2020" required>
+
+                <!-- Preț -->
+                <label for="price">Preț (€)</label>
+                <input type="number" id="price" name="price" step="0.01" placeholder="75000" required>
+
+                <!-- Telefon -->
+                <label for="phone">Număr de telefon</label>
+                <input type="text" id="phone" name="phone" placeholder="07xxxxxxxx" required>
+
+                <!-- Descriere -->
+                <label for="description">Descriere</label>
+                <textarea id="description" name="description" rows="4"
+                    placeholder="Detalii despre mașină..."></textarea>
+
+                <!-- Imagine -->
+                <label for="image">Imagine</label>
+                <input type="file" id="image" name="image" accept="image/*">
+
+                <!-- Butoane -->
+                <div class="form-actions">
+                    <button type="submit" class="btn primary">Salvează</button>
+                    <a href="{{ url_for('index') }}" class="btn secondary">Înapoi</a>
+                </div>
+
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 Car Market • Proiect Flask by Ghenadie</p>
+    </footer>
+
+</body>
+
+</html>
